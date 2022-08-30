@@ -11,7 +11,7 @@ namespace MauiDemo
     {
         public event GameOverEventHandler GameOverEvent;
         bool IsInfiniteGame { get; set; } = false;
-        public Snake Snake { get; private set; } = new(5, 10) ;
+        public Snake Snake { get; private set; } = new(3, 10) ;
         public Size AreaSize = new(15, 15);
 
         public List<Food> SpawnedFood { get; private set; } = new List<Food>();
@@ -38,8 +38,13 @@ namespace MauiDemo
             Timer.Interval = TimeSpan.FromSeconds(0.3);
 
             FoodSpawnTimer.Start();
-            FoodSpawnTimer.Interval = TimeSpan.FromSeconds(10);
+            FoodSpawnTimer.Interval = TimeSpan.FromSeconds(5);
             FoodSpawnTimer.Tick += FoodSpawnTimer_Tick;
+
+            for(int i = 0; i < 5; i++)
+            {
+                SpawnBadFood();
+            }
         }
 
         private void FoodSpawnTimer_Tick(object sender, EventArgs e)
@@ -51,7 +56,7 @@ namespace MauiDemo
             else
                 SpawnBadFood();
 
-            FoodSpawnTimer.Interval = TimeSpan.FromSeconds(rand.Next(4, 12));
+            FoodSpawnTimer.Interval = TimeSpan.FromSeconds(rand.Next(2, 6));
         }
 
         #region Pause and resume

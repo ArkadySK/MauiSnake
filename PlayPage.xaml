@@ -29,19 +29,33 @@
               Grid.ColumnSpan="3"
               Padding="10"
               BackgroundColor="{x:OnPlatform Android={StaticResource Secondary}}"
-              AutomationProperties.IsInAccessibleTree="False" CascadeInputTransparent="True">
+              AutomationProperties.IsInAccessibleTree="False" 
+              VerticalOptions="Center"
+              CascadeInputTransparent="True">
 
-            <VerticalStackLayout HorizontalOptions="End">
-                <StackLayout Orientation="Horizontal">
-                    <Label Text="Goal Size: "/>
-                    <Label Text="{Binding Snake.GoalSize}"/>
+            <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                <StackLayout 
+                    Orientation="Horizontal" 
+                    Margin="20,1"
+                    Spacing="4">
+                    <Label Text="Goal Size: "
+                       FontSize="Medium" />
+                    <Label Text="{Binding Snake.GoalSize}"
+                        FontAttributes="Bold"
+                       FontSize="Medium" />
                 </StackLayout>
-                <StackLayout Orientation="Horizontal"                         
-                         >
-                    <Label Text="Score: "/>
-                    <Label Text="{Binding Score}"/>
+                
+            <StackLayout 
+                Orientation="Horizontal" 
+                Margin="20,1"
+                Spacing="4">
+                <Label Text="Score: " 
+                       FontSize="Medium" />
+                <Label Text="{Binding Score}"
+                        FontAttributes="Bold"
+                       FontSize="Medium" />
                 </StackLayout>
-            </VerticalStackLayout>
+            </StackLayout>
 
 
             <HorizontalStackLayout>

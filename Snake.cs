@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MauiDemo
 {
-    public class Snake
+    public class Snake : INotifyPropertyChanged
     {
+        private int foodEaten = 0;
+        private int penalty = 0;
+
         public enum Direction
         {
             Up,
@@ -17,23 +22,43 @@ namespace MauiDemo
             Right
         }
 
-        public Direction MoveDirection { get; private set; } = Direction.Down;
-        public int InitialSize { get; private set; } = 3;
-        public int GoalSize { get; private set; } = 10;        
-        
-        // Prva v arrayi je hlava, potom ide telo
-        public List<Point> BodyPositions { get; private set; } = new List<Point>();
-        public int DisplaySize 
+        internal void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            get 
-            {
-                return InitialSize + FoodEaten - Penalty;
-            } 
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public int FoodEaten { get; set; } = 0;
-        public int Penalty { get; internal set; } = 0;
 
+        public Direction MoveDirection { get; private set; } = Direction.Down;
+        public int InitialSize { get; private set; } = 3;
+        public int GoalSize { get; private set; } = 10;
+
+        // Prva v arrayi je hlava, potom ide telo
+        public List<Point> BodyPositions { get; private set; } = new List<Point>();
+        public int DisplaySize
+        {
+            get
+            {
+                return InitialSize + FoodEaten - Penalty;
+            }
+        }
+
+        public int FoodEaten 
+        { 
+            get => foodEaten; set
+            {
+                foodEaten = value;
+                NotifyPropertyChanged("DisplaySize");
+            }
+        }
+        public int Penalty 
+        { 
+            get => penalty; 
+            internal set
+            {
+                penalty = value;
+                NotifyPropertyChanged("DisplaySize");
+            }
+        }
         public Snake(int size, int goalSize)
         {
             this.InitialSize = size;
@@ -42,6 +67,8 @@ namespace MauiDemo
             GoalSize = goalSize;
 
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void ChangeDirection(Direction dir)
         {

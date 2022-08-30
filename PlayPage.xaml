@@ -39,21 +39,22 @@
                     Margin="20,1"
                     Spacing="4">
                     <Label Text="Goal Size: "
-                       FontSize="Medium" />
+                        FontAttributes="Bold"
+                        FontSize="Medium" />
                     <Label Text="{Binding Snake.GoalSize}"
                         FontAttributes="Bold"
-                       FontSize="Medium" />
+                        FontSize="Medium" />
                 </StackLayout>
                 
             <StackLayout 
                 Orientation="Horizontal" 
                 Margin="20,1"
                 Spacing="4">
-                <Label Text="Score: " 
-                       FontSize="Medium" />
-                <Label Text="{Binding Score}"
+                <Label Text="Current Size: " 
+                        FontSize="Medium" />
+                <Label Text="{Binding Snake.DisplaySize}"
                         FontAttributes="Bold"
-                       FontSize="Medium" />
+                        FontSize="Medium" />
                 </StackLayout>
             </StackLayout>
 

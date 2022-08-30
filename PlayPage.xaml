@@ -33,7 +33,7 @@
               VerticalOptions="Center"
               CascadeInputTransparent="True">
 
-            <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+            <StackLayout HorizontalOptions="End" Orientation="{x:OnPlatform UWP=Horizontal, Default=Vertical}">
                 <StackLayout 
                     Orientation="Horizontal" 
                     Margin="20,1"

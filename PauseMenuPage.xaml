@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiDemo.PauseMenuPage"
+             BackgroundColor="Transparent"
+             MaximumWidthRequest="320"
+             Title="PauseMenuPage">
+    <Grid VerticalOptions="Center" Padding="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Label 
+                Text="PAUSE MENU"
+                VerticalOptions="Center" 
+                BackgroundColor="{StaticResource Secondary}"
+                TextColor="{StaticResource SecondaryText}"
+                HorizontalOptions="Fill"
+                VerticalTextAlignment="Center"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalTextAlignment="Center"
+                HeightRequest="50"/>
+
+        <Rectangle Background="Gray" Grid.Row="1" Opacity=".6"/>
+        <Rectangle Background="Black" Grid.RowSpan="2" Opacity=".1" ZIndex="-1" Margin="5,5,-5,-5"/>
+        <VerticalStackLayout Grid.Row="1" Margin="5">
+            <Button Text="Restart"
+                    Style="{StaticResource MediumButton}"
+                    Clicked="ButtonRestart_Clicked"/>
+            <Button Text="Go to main menu"
+                    Style="{StaticResource MediumButton}"
+                    Clicked="ButtonBack_Clicked"/>
+            <Rectangle Margin="5" HeightRequest="5" Fill="{StaticResource Secondary}"/>
+            <Button Text="Return to game"
+                    Style="{StaticResource MediumButton}"
+                    Clicked="ButtonReturn_Clicked"/>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

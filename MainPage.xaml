@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title=""
+             BackgroundColor="{StaticResource Tertiary}"
+             
+             x:Class="MauiDemo.MainPage" Frame="0,0,0,0">
+    <ScrollView>
+        <Grid
+            Margin="5"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Padding="10,0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Image Source="snake.png" WidthRequest="400" Margin="0,10"/>
+
+            <Rectangle Background="Gray" Grid.Row="2" Opacity=".6"/>
+            <Rectangle Background="Black" Grid.Row="1" Grid.RowSpan="2" Opacity=".1" ZIndex="-1" Margin="5,5,-5,-5"/>
+            
+            <Label
+                Text="CHOOSE AN ACTIVITY"
+                Grid.Row="1"
+                VerticalOptions="Center" 
+                BackgroundColor="{StaticResource Secondary}"
+                TextColor="{StaticResource SecondaryText}"
+                HorizontalOptions="Fill"
+                VerticalTextAlignment="Center"
+                FontAttributes="Bold"
+                FontSize="20"
+                HorizontalTextAlignment="Center"
+                HeightRequest="50"/>
+            
+            <VerticalStackLayout Grid.Row="2" Margin="5">
+                <Button 
+                    Text="Play" 
+                    Grid.Row="1"
+                    Style="{StaticResource MediumButton}"
+                    Clicked="ButtonPlay_Clicked"
+                    HorizontalOptions="Center" 
+                    Padding="10"/>
+
+                <Rectangle Margin="5" HeightRequest="5" Fill="{StaticResource Secondary}"/>
+
+                <Button
+                    Style="{StaticResource MediumButton}"
+                    Text="Options"
+                    IsEnabled="False"
+                    HorizontalOptions="Center" 
+                    Padding="10"/>
+
+                <Button
+                    Style="{StaticResource MediumButton}"
+                    IsVisible="{x:OnPlatform UWP=True, Default=False}"
+                    Text="Leave"
+                    Clicked="ButtonLeave_Clicked"
+                    HorizontalOptions="Center" 
+                    Padding="10"/>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

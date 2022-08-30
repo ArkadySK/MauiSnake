@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiDemo.PlayPage"
+             xmlns:drawable="clr-namespace:MauiDemo"
+             BackgroundColor="Gray"
+             Unloaded="ContentPage_Unloaded" 
+             SizeChanged="ContentPage_SizeChanged">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="{x:OnPlatform UWP=Auto, Default=2*}"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Frame x:Name="PauseMenuFrame" ZIndex="10" Margin="0, 200" CornerRadius="0" BackgroundColor="Transparent" BorderColor="Transparent" Grid.Column="1" Grid.RowSpan="4" IsVisible="False"/>
+
+        <!-- UI -->
+        <Grid x:Name="GameUIGrid" 
+              Margin="{x:OnPlatform UWP=30 5 5 5}"
+              Grid.Row="0"
+              Grid.ColumnSpan="3"
+              Padding="10"
+              BackgroundColor="{x:OnPlatform Android={StaticResource Secondary}}"
+              AutomationProperties.IsInAccessibleTree="False" CascadeInputTransparent="True">
+
+            <VerticalStackLayout HorizontalOptions="End">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Goal Size: "/>
+                    <Label Text="{Binding Snake.GoalSize}"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"                         
+                         >
+                    <Label Text="Score: "/>
+                    <Label Text="{Binding Score}"/>
+                </StackLayout>
+            </VerticalStackLayout>
+
+
+            <HorizontalStackLayout>
+                <Button x:Name="PauseButton" 
+                        Style="{StaticResource SmallButton}"
+                        Text="Pause"
+                        Clicked="PauseButton_Clicked"/>
+                <Button Text="Menu"                
+                        Style="{StaticResource SmallButton}"
+                        Clicked="Button_Clicked"/>
+            </HorizontalStackLayout>
+        </Grid>
+
+        <!-- The game -->
+        <Frame x:Name="SnakeBorder"  
+                Grid.Row="2"
+                Grid.Column="1"
+                Padding="{x:OnPlatform UWP=20, Default=5}"
+                CornerRadius="0"
+                BackgroundColor="{DynamicResource Primary}"
+                BorderColor="Black">
+
+            <Grid x:Name="SnakeGrid"               
+              Background="{StaticResource Tertiary}">
+            </Grid>
+        </Frame>
+
+
+        
+        <Button x:Name="LeftButton2"
+                IsVisible="{x:OnPlatform Android=True, Default=False}"
+                Style="{DynamicResource GameControlButton}"
+                Text="Left"
+                Grid.Column="0"
+                Grid.Row="2"
+                Clicked="LeftButton_Clicked"/>
+
+        <Button x:Name="RightButton2"
+                IsVisible="{x:OnPlatform UWP=True, Default=False}"
+                Style="{DynamicResource GameControlButton}"
+                Text="Right"
+                Grid.Column="2"
+                Grid.Row="2"
+                Clicked="RightButton_Clicked"/>
+
+        <Button x:Name="UpButton2"
+                IsVisible="{x:OnPlatform UWP=True, Default=False}"
+                Style="{DynamicResource GameControlButton}"
+                Text="Up"
+                Grid.Column="1"
+                Grid.Row="1"
+                Clicked="UpButton_Clicked"/>
+
+        <Button x:Name="DownButton2"
+                IsVisible="{x:OnPlatform UWP=True, Default=False}"
+                Style="{DynamicResource GameControlButton}"
+                Text="Down"
+                Grid.Column="1"
+                Grid.Row="3"
+                Margin="0,0,0,20"
+                Clicked="DownButton_Clicked"/>
+
+        <!-- Arrows Panel -->
+        <Grid Grid.Column="1"
+              Grid.Row="3"
+                IsVisible="{x:OnPlatform UWP=False, Default=True}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Button x:Name="LeftButton"
+                    Style="{DynamicResource GameControlButton}"
+                    Text="Left"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    Clicked="LeftButton_Clicked"/>
+
+            <Button x:Name="RightButton"
+                    Style="{DynamicResource GameControlButton}"
+                    Text="Right"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    Clicked="RightButton_Clicked"/>
+
+            <Button x:Name="UpButton"
+                    Style="{DynamicResource GameControlButton}"
+                    Text="Up"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Clicked="UpButton_Clicked"/>
+
+            <Button x:Name="DownButton"
+                    Style="{DynamicResource GameControlButton}"
+                    Text="Down"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Clicked="DownButton_Clicked"/>
+        </Grid>
+    </Grid>
+</ContentPage>

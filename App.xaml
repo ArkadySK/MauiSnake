@@ -16,7 +16,6 @@
 
 
                 <ResourceDictionary>
-                    <Color x:Key="WindowsTitleBarColor">Black</Color>
 
                     <SolidColorBrush x:Key="BackgroundColor" Color="{AppThemeBinding Light=Gray, Dark=Black}" />
 

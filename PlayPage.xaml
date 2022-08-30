@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiDemo.PlayPage"
              xmlns:drawable="clr-namespace:MauiDemo"
-             BackgroundColor="Gray"
+             BackgroundColor="{StaticResource Tertiary}"
              Unloaded="ContentPage_Unloaded" 
              SizeChanged="ContentPage_SizeChanged">
     <Grid>
@@ -80,7 +80,7 @@
                 BorderColor="Black">
 
             <Grid x:Name="SnakeGrid"               
-              Background="{StaticResource Tertiary}">
+              Background="{StaticResource Yellow100Accent}">
             </Grid>
         </Frame>
 

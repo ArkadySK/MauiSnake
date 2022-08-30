@@ -72,7 +72,7 @@
 
         
         <Button x:Name="LeftButton2"
-                IsVisible="{x:OnPlatform Android=True, Default=False}"
+                IsVisible="{x:OnPlatform UWP=True, Default=False}"
                 Style="{DynamicResource GameControlButton}"
                 Text="Left"
                 Grid.Column="0"

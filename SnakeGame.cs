@@ -137,23 +137,30 @@ namespace MauiDemo
                 GameOverEvent?.Invoke(this, new GameOverEventArgs() { Score = Score, IsFinished = isFinished });
             }
 
-
+            Point? newPos = null;
             switch (Snake.MoveDirection)
             {
                 case Direction.Up:
-                    Snake.BodyPositions.Insert(0, new Point(headPosition.X, headPosition.Y - 1));
+                    newPos = new Point(headPosition.X, headPosition.Y - 1);
                     break;
                 case Direction.Down:
-                    Snake.BodyPositions.Insert(0, new Point(headPosition.X, headPosition.Y + 1));
+                    newPos = new Point(headPosition.X, headPosition.Y + 1);
                     break;
                 case Direction.Left:
-                    Snake.BodyPositions.Insert(0, new Point(headPosition.X - 1, headPosition.Y));
+                    newPos = new Point(headPosition.X - 1, headPosition.Y);
                     break;
                 case Direction.Right:
-                    Snake.BodyPositions.Insert(0, new Point(headPosition.X + 1, headPosition.Y));
+                    newPos = new Point(headPosition.X + 1, headPosition.Y);
                     break;
             }
 
+            // If the snake is eating itself
+            if(Snake.BodyPositions.Contains(newPos.Value))
+            {
+                GameOverEvent.Invoke(this, new GameOverEventArgs() { Score = Score, IsFinished = false });
+            }
+
+            Snake.BodyPositions.Insert(0, newPos.Value);
 
             // Make snake shorter if needed
             while (Snake.DisplaySize < Snake.BodyPositions.Count)

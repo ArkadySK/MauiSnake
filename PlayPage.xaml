@@ -33,22 +33,20 @@
               VerticalOptions="Center"
               CascadeInputTransparent="True">
 
-            <StackLayout HorizontalOptions="End" Orientation="{x:OnPlatform UWP=Horizontal, Default=Vertical}">
+            <StackLayout HorizontalOptions="Start" Orientation="{x:OnPlatform UWP=Horizontal, Default=Vertical}">
                 <StackLayout 
-                    Orientation="Horizontal" 
-                    Margin="20,1"
+                    Orientation="Horizontal"
                     Spacing="4">
                     <Label Text="Goal Size: "
                         FontAttributes="Bold"
                         FontSize="Medium" />
-                    <Label Text="{Binding Snake.GoalSize}"
+                    <Label Text="{Binding Snake.GoalSize, FallbackValue=Infinite}"
                         FontAttributes="Bold"
                         FontSize="Medium" />
                 </StackLayout>
                 
             <StackLayout 
-                Orientation="Horizontal" 
-                Margin="20,1"
+                Orientation="Horizontal"
                 Spacing="4">
                 <Label Text="Current Size: " 
                         FontSize="Medium" />
@@ -59,7 +57,7 @@
             </StackLayout>
 
 
-            <HorizontalStackLayout>
+            <HorizontalStackLayout HorizontalOptions="End">
                 <Button x:Name="PauseButton" 
                         Style="{StaticResource SmallButton}"
                         Text="Pause"

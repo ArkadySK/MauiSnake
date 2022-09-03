@@ -12,7 +12,7 @@ namespace MauiDemo
         public event GameOverEventHandler GameOverEvent;
         bool IsInfiniteGame { get; set; } = false;
         public Snake Snake { get; private set; }
-        public Size AreaSize = new(15, 15);
+        public Size AreaSize = new(10, 10);
 
         public List<Food> SpawnedFood { get; private set; } = new List<Food>();
         public IDispatcherTimer Timer { get; private set; } = Application.Current.Dispatcher.CreateTimer();
@@ -27,7 +27,7 @@ namespace MauiDemo
                     return resultScore;
                 else
 
-                    return -1;
+                    return 0;
             }
         }
 
@@ -120,13 +120,25 @@ namespace MauiDemo
             
             if(!IsInfiniteGame && Snake.DisplaySize >= Snake.GoalSize)
             {
-                GameOverEvent?.Invoke(this, new GameOverEventArgs() { Score = Score, IsFinished = true });
+                GameOverEvent?.Invoke(this, new GameOverEventArgs() 
+                { 
+                    Score = Score, 
+                    IsFinished = true,
+                    MessageText = $"You have successfully completed this level! \n\nYour Score: {Score}" 
+                }
+                );
                 return;
             }
 
             if (Snake.BodyPositions.Count <= 0 || Snake.DisplaySize <= 0)
             {
-                GameOverEvent?.Invoke(this, new GameOverEventArgs() { Score = Score, IsFinished = false });
+                GameOverEvent?.Invoke(this, new GameOverEventArgs()
+                {
+                    Score = Score,
+                    IsFinished = false,
+                    MessageText = $"You were destroyed! \n\nScore: {Score}"
+                }
+                );
                 return;
             }
             Point headPosition = Snake.BodyPositions.First();
@@ -157,7 +169,14 @@ namespace MauiDemo
             // If the snake is eating itself
             if(Snake.BodyPositions.Contains(newPos.Value))
             {
-                GameOverEvent.Invoke(this, new GameOverEventArgs() { Score = Score, IsFinished = false });
+                GameOverEvent.Invoke(this, new GameOverEventArgs() 
+                { 
+                    Score = Score, 
+                    IsFinished = false , 
+                    MessageText = $"You ate yourself!\n\nScore: {Score}"
+                }
+                );
+                return;
             }
 
             Snake.BodyPositions.Insert(0, newPos.Value);

@@ -33,13 +33,13 @@ public partial class PlayPage : ContentPage
     private async void Snake_GameOverEvent(object sender, GameOverEventArgs e)
     {
         Game.Pause();
-        string descText = "\nCongratulations! \nYou passed this level!";
+        string header = "Congratulations!";
         if (!e.IsFinished)
-            descText = "You failed!";
+            header = "Game over!";
         await DisplayAlert(
-            "Game over!",
-            "Score: " + e.Score + Environment.NewLine + descText,
-            "Go to main menu");
+            header,
+            e.MessageText,
+            "Go to main menu"); 
         MenuNavigator.GoToMainPage();
     }
 

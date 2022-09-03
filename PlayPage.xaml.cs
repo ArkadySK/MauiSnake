@@ -62,7 +62,7 @@ public partial class PlayPage : ContentPage
         }
     }
 
-    float col = .8f;
+    float col = .9f;
     private void DrawSnake()
     {
         // Check amount of positons and create / remove rectangles
@@ -79,7 +79,7 @@ public partial class PlayPage : ContentPage
                 if(SnakeRectangles.Count != 0)
                 {
                     rect.Fill = new SolidColorBrush(new Color(col, 0.1f, 0.1f));
-                    col /= 1.1f;
+                    col /= 1.05f;
                 }
                 else // If it is the head of snake
                     rect.Fill = new SolidColorBrush(Colors.Red);

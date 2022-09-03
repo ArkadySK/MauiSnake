@@ -5,7 +5,7 @@
     {
         public int Score { get; set; }
         public TimeSpan PlayTime { get; set; } 
-        public string ErrorMessage { get; set; }
+        public string MessageText { get; set; }
         public bool IsFinished { get; set; }
     }
 }

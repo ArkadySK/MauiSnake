@@ -30,7 +30,7 @@ namespace MauiDemo
 
         public Direction MoveDirection { get; private set; } = Direction.Down;
         public int InitialSize { get; private set; } = 3;
-        public int GoalSize { get; private set; } = 10;
+        public int? GoalSize { get; private set; } = 10;
 
         // Prva v arrayi je hlava, potom ide telo
         public List<Point> BodyPositions { get; private set; } = new List<Point>();
@@ -59,7 +59,7 @@ namespace MauiDemo
                 NotifyPropertyChanged("DisplaySize");
             }
         }
-        public Snake(int size, int goalSize)
+        public Snake(int size, int? goalSize)
         {
             this.InitialSize = size;
             for (int i = 0; i < size; i++)

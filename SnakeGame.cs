@@ -11,7 +11,7 @@ namespace MauiDemo
     {
         public event GameOverEventHandler GameOverEvent;
         bool IsInfiniteGame { get; set; } = false;
-        public Snake Snake { get; private set; } = new(3, 10) ;
+        public Snake Snake { get; private set; }
         public Size AreaSize = new(15, 15);
 
         public List<Food> SpawnedFood { get; private set; } = new List<Food>();
@@ -32,8 +32,11 @@ namespace MauiDemo
         }
 
 
-        public SnakeGame()
+        public SnakeGame(int snakeSize, int? goalSize)
         {
+            Snake = new Snake(snakeSize, goalSize);
+            if (goalSize is null)
+                IsInfiniteGame = true;
             Timer.Start();
             Timer.Interval = TimeSpan.FromSeconds(0.3);
 

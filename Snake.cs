@@ -30,7 +30,7 @@ namespace MauiDemo
 
         public Direction MoveDirection { get; private set; } = Direction.Down;
         public int InitialSize { get; private set; } = 3;
-        public int? GoalSize { get; private set; } = 10;
+        public int? GoalSize { get; private set; }
 
         // Prva v arrayi je hlava, potom ide telo
         public List<Point> BodyPositions { get; private set; } = new List<Point>();

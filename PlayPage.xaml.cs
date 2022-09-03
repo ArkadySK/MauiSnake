@@ -13,7 +13,7 @@ public partial class PlayPage : ContentPage
 	public MenuNavigator MenuNavigator { get; set; }
 	PauseMenuPage PauseMenu = new PauseMenuPage();
 
-    SnakeGame Game = new SnakeGame();
+    SnakeGame Game = new SnakeGame(3, null);
 
     List<Rectangle> SnakeRectangles = new List<Rectangle>();
     List<Image> FoodImages = new List<Image>();
@@ -62,7 +62,7 @@ public partial class PlayPage : ContentPage
         }
     }
 
-    byte col = 220;
+    float col = .8f;
     private void DrawSnake()
     {
         // Check amount of positons and create / remove rectangles
@@ -77,13 +77,14 @@ public partial class PlayPage : ContentPage
             {
                 var rect = new Rectangle();
                 if(SnakeRectangles.Count != 0)
-                    rect.Fill = new SolidColorBrush(new Color(col, (byte)20, (byte)20));
+                {
+                    rect.Fill = new SolidColorBrush(new Color(col, 0.1f, 0.1f));
+                    col /= 1.1f;
+                }
                 else // If it is the head of snake
                     rect.Fill = new SolidColorBrush(Colors.Red);
                 SnakeRectangles.Add(rect);
-                SnakeGrid.Children.Add(rect);
-                col -= 15;
-                
+                SnakeGrid.Children.Add  (rect);                
             }
         }
 

@@ -2,10 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiDemo.PlayPage"
-             xmlns:drawable="clr-namespace:MauiDemo"
+             xmlns:converter="clr-namespace:MauiSnake.Converters"
              BackgroundColor="{StaticResource Tertiary}"
              Unloaded="ContentPage_Unloaded" 
              SizeChanged="ContentPage_SizeChanged">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:NullableIntToString x:Key="nullableIntToString"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -40,7 +45,7 @@
                     <Label Text="Goal Size: "
                         FontAttributes="Bold"
                         FontSize="Medium" />
-                    <Label Text="{Binding Snake.GoalSize, FallbackValue=Infinite}"
+                    <Label Text="{Binding Snake.GoalSize, Converter={StaticResource nullableIntToString}, ConverterParameter='Infinity', Mode=OneWay}"
                         FontAttributes="Bold"
                         FontSize="Medium" />
                 </StackLayout>
